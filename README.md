@@ -7,7 +7,7 @@ Ping pong game made with Javascript
 
 ## Demo
 > Press <kbd>SPACE</kbd> to start the game
-[Ping-Pong game](https://ouss122.github.io/Ping-Pong/)
+- [Ping-Pong game](https://ouss122.github.io/Ping-Pong/)
 ## Credits
 
 Sounds by captaincrunch80 : [
