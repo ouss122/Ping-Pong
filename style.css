@@ -3,15 +3,19 @@ body{
     margin: 0;
     box-sizing: border-box;
     overflow: hidden;
+    background-color: rgb(22, 21, 21);
+
 }
+
+
 .cont{
     background-color: black;
     width: auto;
     height: 100vh;
- /*   margin: 0 15px; 
-     margin-top: 7.5vh;
-    border-radius: 30px; */
+    margin-left: 25vw;
+    margin-right: 25vw;
     overflow: hidden;
+    position: relative;
 }
 
 .cont::before{
@@ -26,13 +30,13 @@ body{
 
 .box{
     height:20vh;
-    width:3.5vw;
+    width:3%;
     background-color: rgb(154, 156, 158);
     position: absolute;
     transition: 0.2s;
 }
 .op{
-   left: 96.5vw;
+  left:97%
 
 }
 .ball{
@@ -51,8 +55,37 @@ body{
     font-size: 3.5em;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
 .opWin{
-    right:20vw;
+    right:25%;
 }
 .plWin{
-    left:20vw;
+    left:25%;
+}
+
+
+
+@media screen and (max-width:950px) {
+    .cont{
+        margin-left: 15vw;
+        margin-right: 15vw; 
+    }
+}
+
+@media screen and (max-width:750px) {
+    .cont{
+        margin-left: 10vw;
+        margin-right: 10vw; 
+    }
+}
+
+@media screen and (max-width:550px) {
+    .cont{
+        margin-left: 5vw;
+        margin-right: 5vw; 
+    }
+}
+@media screen and (max-width:450px) {
+    .cont{
+        margin-left: 0vw;
+        margin-right: 0vw; 
+    }
 }

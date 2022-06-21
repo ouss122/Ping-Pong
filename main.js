@@ -1,16 +1,17 @@
 let play= document.querySelector('.player');
 let opp=document.querySelector('.op');
+let container= document.querySelector('.cont');
 let bball=document.querySelector('.ball');
 let OpWin=document.querySelector('.opWin');
 let PlWin=document.querySelector('.plWin');
-
+let border =  (window.innerWidth- container.offsetWidth) ;
 const hitWallS= new Audio('assets/hitWall.ogg');
 const hitBoxS= new Audio('assets/hitBox.ogg');
 const score= new Audio('assets/score.ogg');
 const mov=40;
 const movop=10;
 let movop1=3;
-const array=[-1,1];
+//const array=[-1,1];
 function acWin(s,k){
    s.textContent=k;
 }
@@ -62,15 +63,12 @@ function moveOp(k){
     let i=1; 
     // 
    while (i<=u && !hitOp(ball.x,ball.y) && (ball.y<= op.offsetY -3  || ball.y > (op.offsetY+opp.offsetHeight +3))){
-   if (k===1){
-        
+   if (k===1){  
         op.moveDown(opp,movop1);
-
     }else {
         op.moveUp(opp,movop1);
     }
-
-     i++;
+   i++;
    }
 }
 function Ball(){ //the ball object
@@ -98,7 +96,7 @@ function Ball(){ //the ball object
            }
            j= ball.y-j;
            if (j>0){
-               if (op.offsetY> ball.y && ball.x > (window.innerWidth- window.innerWidth*0.2)) {
+               if (op.offsetY> ball.y && ball.x > ((window.innerWidth - border)*0.8)) {
                    moveOp(-1);
                 }else{
                     moveOp(1);   
@@ -164,8 +162,8 @@ let falsee= () =>{
 
 let wallUp= y => y<=0;
 let wallDown= y => y+bball.offsetHeight>=window.innerHeight;
-let hitOp= (x,y) =>x>=(window.innerWidth - play.offsetWidth -bball.offsetWidth) && (y >=op.offsetY && y <=(op.offsetY + play.offsetHeight));
-let plWin = x => (x>=window.innerWidth -bball.offsetWidth -1);
+let hitOp= (x,y) =>x>=(window.innerWidth -border - play.offsetWidth -bball.offsetWidth) && (y >=op.offsetY && y <=(op.offsetY + play.offsetHeight));
+let plWin = x => (x>=window.innerWidth-border -bball.offsetWidth -1);
 let hitPl=( x,y) => (y >= player.offsetY) && (y < player.offsetY + play.offsetHeight) && (x < play.offsetWidth);
 let opWin= (x) => (x <=0);
 let throwed=false;
@@ -206,28 +204,34 @@ function hitWall(a,b,c,d,e,f,k,calc){
         if (check){
             clearInterval(inter);
             if (a(ball.y)){
-             hitWall(falsee,wallUp,plWin,hitOp,e,f,k,calc);
-
+                hitWall(falsee,wallUp,plWin,hitOp,e,f,k,calc);
+                console.log('wall down')
                 
             }else if (b(ball.y)){
-             hitWall(wallDown,falsee,plWin,hitOp,e,f,k,calc);
-
+                hitWall(wallDown,falsee,plWin,hitOp,e,f,k,calc);
+                console.log('wall up')
+                
             }else if (c(ball.x)){
                 player.wining();
                 acWin(PlWin,player.win);
                 ball.reSpeed();
                 movop1=2;
+                console.log('hey');
                 opStart();
                 
             }else if (d(ball.x,ball.y)){
                 movop1++;
                 ball.incSpeed();
-               hitbox((a,x,x1,y1)=>{
+                hitbox((a,x,x1,y1)=>{
                 return  a*(x1-x)+y1;
             },i => i-1,op);
             }
             else if (e(ball.x,ball.y)){
                 ball.incSpeed();
+                console.log('hit pl')
+                if (ball.x===play.offsetWidth-1 && ball.y===0){
+                  ball.incY(1);     
+                 }
                 movop1++;
                 hitbox((a,x,x1,y1)=>{
                     return  a*(x-x1)+y1;
@@ -238,6 +242,7 @@ function hitWall(a,b,c,d,e,f,k,calc){
                 acWin(OpWin,op.win);
                 ball.reSpeed();
                 movop1=2;
+                
                 setTimeout(() => {
                     ball.y=player.offsetY+(play.offsetHeight/2 - bball.offsetHeight/2);
                     ball.x=play.offsetWidth;
@@ -291,10 +296,10 @@ window.addEventListener('keydown',function (event){
     
     
     function opStart(){
-    tang=(array[Math.floor(Math.random()*2)])*(Math.floor(Math.random()*10));
+    //tang=(array[Math.floor(Math.random()*2)])*(Math.floor(Math.random()*10));
     op.offsetY=0;
    setTimeout(()=>{
-        ball.x=window.innerWidth - play.offsetWidth - bball.offsetWidth;
+        ball.x=window.innerWidth -border - play.offsetWidth - bball.offsetWidth;
         ball.y=op.offsetY+ (play.offsetHeight/2- bball.offsetHeight/2)
         acBall();
     },1000); 
