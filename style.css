@@ -1,0 +1,58 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.cont{
+    background-color: black;
+    width: auto;
+    height: 100vh;
+ /*   margin: 0 15px; 
+     margin-top: 7.5vh;
+    border-radius: 30px; */
+    overflow: hidden;
+}
+
+.cont::before{
+    content: '';
+    width: 2%;
+    height: 100%;
+    position: absolute;
+    right: 50%;
+    background-image: repeating-linear-gradient(rgb(172, 172, 172), rgb(190, 190, 190) 10%,black 10%, black 20%)
+}
+
+
+.box{
+    height:20vh;
+    width:3.5vw;
+    background-color: rgb(154, 156, 158);
+    position: absolute;
+    transition: 0.2s;
+}
+.op{
+   left: 96.5vw;
+
+}
+.ball{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: azure;
+    position: absolute;
+   transition: 0.1s;
+
+}
+
+.win{
+    position: absolute;
+    color: azure;
+    font-size: 3.5em;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+.opWin{
+    right:20vw;
+}
+.plWin{
+    left:20vw;
+}
